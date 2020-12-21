@@ -1,0 +1,35 @@
+.playbuttons{
+    margin-top: 1rem;
+    height: 5rem;
+    border-radius: 30px;
+    background-color: yellow;
+    margin-bottom: auto;
+    border: solid red;
+    display: flex;
+    align-content:space-around;
+    justify-content: space-around;
+}
+
+.pressMe{
+    padding: 1rem;
+    border-radius: 30px;
+    margin-top: 0.8rem;
+    color: yellow; 
+    background-color: red;
+}
+.pressMe:hover{
+   background-color: yellow;
+   color: red;
+}
+
+.displayDiv{
+    border: solid red;
+    height: 29rem;
+    background-color: yellow;
+    color: red;
+    font-weight: 400;
+    font-size: large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

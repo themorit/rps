@@ -1,8 +1,22 @@
 <!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="rps.css">
+</head>
+
 <html>
+    <div id='result' class='displayDiv'>
+        
+    </div>
+    <div id = 'playarea' class='playbuttons'>
+    <center>
+    <button value='rock' id ='playRock' class='pressMe'>ROCK!</button>
+    <button value='paper' id='playPaper' class='pressMe'>PAPER!</button>
+    <button value='scissor' id='playScissor' class='pressMe'>SCISSOR!</button>
+    </center>
+    </div>
     <script>
         
-        let rounds;
+        /*let rounds;
         let gain=0;
         let loss=0;
         for (rounds=1; rounds<=5; rounds++){
@@ -19,27 +33,51 @@
             alert('You lost! You scored: '+gain+'      The CPU scored: '+loss+'.')
         } else {
             alert('NO ONE WON! You scored: '+gain+'      The CPU scored: '+loss+'.')
+        }*/
+
+    
+    
+        let playerScore=0;
+        let cpuScore=0;   
+        
+    function computerPlay(){
+        let choiches = ['rock', 'paper', 'scissor'];
+        let pc_choiche = choiches[Math.floor(Math.random()*choiches.length)];
+        return pc_choiche;
         }
 
-
-            function computerPlay(){
-            let choiches = ['rock', 'paper', 'scissor'];
-            let pc_choiche = choiches[Math.floor(Math.random()*choiches.length)];
-            return pc_choiche;
-            }
-
-        function singleRound(playerSelection, cpuSelection ){
-            let msg;
-            let won = true;
-            let selection = playerSelection.toLowerCase();
-            if ((selection=='rock' && cpuSelection=='paper') || (selection=='paper' && cpuSelection=='scissor') || (selection=='scissor' && cpuSelection=='rock')) {
-                won = false;
-            }
-
-            (won == true)?  msg = 'You won!': msg = 'You lost!';
-
-            return msg;
-        }   
+    function singleRound(selection){
+            let msg='';
+            cpuSelection = computerPlay();
         
+            if ((selection=='rock' && cpuSelection=='paper') || (selection=='paper' && cpuSelection=='scissor') || (selection=='scissor' && cpuSelection=='rock')) {
+                cpuScore += 1
+            msg = ('You lost! ' + cpuSelection + ' beats ' + selection);
+            + "<br><br>Player score: " + playerScore + "<br>Computer score: " + cpuScore;
+            }
+            if (playerScore == 5) {
+            result += '<br><br>You won the game! Reload the page to play again'
+            return;
+        } else if (selection == cpuSelection) {
+        result = ('It\'s a tie. You both chose ' + selection
+            + "<br><br>Player score: " + playerScore + "<br>Computer score: " + cpuScore)
+    }
+    else {
+        playerScore += 1
+        result = ('You lose! ' + cpuSelection + ' beats ' + selection
+            + "<br><br>Player score: " + playerScore + "<br>Computer score: " + cpuScore)
+
+        if (cpuScore == 5) {
+            result += '<br><br>I won the game!';
+        }
+    }
+    document.getElementById('result').innerHTML = result
+    return
+}
+const buttons = Array.from(document.querySelectorAll('.pressMe'));
+    buttons.forEach(pressMe => pressMe.addEventListener('click', function(){
+        singleRound(pressMe.value)
+    }))
+
     </script>
 </html>
